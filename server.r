@@ -1,10 +1,10 @@
 library(shiny)
 library(bslib)
-library(dplyr)
+
 
 server <- function(input, output) {
     output$tbl_1 <- renderUI({
-        if (input$value_box > 0) {
+        if (input$value_box %% 2 == 1) {
             card(
                 fluidRow(
                     column(4, "Процентная ставка:"),
@@ -12,14 +12,14 @@ server <- function(input, output) {
                     column(2, "от 10 000 руб.")
                 ),
                 fluidRow(
-                    column(4, "Дополнительная информация")
+                    column(6, "Дополнительная информация", class = "card_row_1")
                 ),
                 fluidRow(
-                    column(4, "Срок рассмотрения заяки:"),
+                    column(5, "Срок рассмотрения заяки:", class = "card_row_2"),
                     column(2, "до 10 дней")
                 ),
                 fluidRow(
-                    column(4, "Необходимая документация:")
+                    column(4, "Необходимая документация:", class = "card_row_3")
                 ),
                 layout_column_wrap(
                     width = 1 / 2,

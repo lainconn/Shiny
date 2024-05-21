@@ -4,39 +4,60 @@ library(bsicons)
 library(shinyjs)
 library(readxl)
 
-tbl_1 <- as.data.frame(read_excel("C:\\Users\\playf\\Downloads\\tbl_1.xlsx"))
+#tbl_1 <- as.data.frame(read_excel("C:\\Users\\playf\\Downloads\\tbl_1.xlsx"))
 
 
 ui <- page_sidebar(
     title = tags$span(
-        bs_icon("bank"), tags$b(" BankEase")
+        bs_icon("bank"), tags$b(" BankEase"), class = "title"
     ),
     useShinyjs(),
     tags$style(HTML("
+    .title {
+        font-size: 20px;
+    }
+    .card_row_1 {
+        padding-left: 50px;
+        font-weight: 200;
+    }
+    .card_row_2 {
+        padding-left: 50px;
+        font-weight: bold;
+        padding-right: 50px;
+    }
+    .card_row_3 {
+        padding-left: 50px;
+        font-weight: bold;
+    }
     .custom-card-header {
-      padding-left: 30px;
-      font-weight: bold;
+        font-size: 13px;
+        padding-left: 30px;
+        font-weight: bold;
+        overflow: hidden;
     }
     .custom-card-body {
       padding: 10px;
       margin-bottom: 10px;
     }
-    .button {
+    .button  {
         padding-left: 18px;
         padding-right: 50px;
-        font-size: 16px;
+        font-size: 14px;
     }
     .custom-card-header-3 {
         padding-left: 0px;
         padding-right: 0px;
     }
     .custom-card-header-4 {
-        padding-left: 0px;
+        padding-left: 10px;
     }
     .custom-card-header-5 {
         padding-left: 10px;
     }
     .custom-card-header-6 {
+        padding-left: 0px;
+    }
+    .custom-card-header-7 {
         padding-left: 0px;
     }
     .nav_item_custom {
@@ -163,6 +184,7 @@ ui <- page_sidebar(
         )
     ),
     card(
+        min_height = "1100px",
         card_header(
             conditionalPanel(
                 "input.nav_pills === 'Кредиты'",
@@ -188,6 +210,7 @@ ui <- page_sidebar(
             )
         ),
         card_body(
+            min_height = "500px",
             class = "custom-card-body",
             conditionalPanel(
                 "input.nav_pills === 'Кредиты'",
@@ -198,10 +221,10 @@ ui <- page_sidebar(
                     label = fluidRow(
                         column(2, "Белагропромбанк"),
                         column(2, "ММБ-стартап-инвест"),
-                        column(2, "от 11,61%"),
+                        column(2, "от 11,61%", class = "custom-card-header-7"),
                         column(2, "от 1 000 руб."),
                         column(2, "до 60 мес."),
-                        column(2, "Поручители \b Залог", class = "custom-card-header-6")
+                        column(2, "Поручители \n Залог")
                     )
                 )
             ),
@@ -220,7 +243,7 @@ ui <- page_sidebar(
                         column(2, "по согласованию"),
                         column(2, "до 600 000 руб."),
                         column(2, "до 24 мес."),
-                        column(2, "Поручители \bЗалог", class = "custom-card-header-6")
+                        column(2, "Поручители \bЗалог")
                     )
                 )
             ),
@@ -239,7 +262,7 @@ ui <- page_sidebar(
                         column(2, "от 11,61%"),
                         column(2, "до 1 000 000 руб."),
                         column(2, "до 12 мес."),
-                        column(2, "Поручители \bЗалог", class = "custom-card-header-6")
+                        column(2, "Поручители \bЗалог")
                     )
                 )
             ),
@@ -258,7 +281,7 @@ ui <- page_sidebar(
                         column(2, "11,61%"),
                         column(2, "до 600 000 руб."),
                         column(2, "до 60 мес."),
-                        column(2, "Залог", class = "custom-card-header-6")
+                        column(2, "Залог")
                     )
                 )
             ),
@@ -277,7 +300,7 @@ ui <- page_sidebar(
                         column(2, "11%"),
                         column(2, "до 174 000 руб."),
                         column(2, "до 18 мес."),
-                        column(2, "Поручители", class = "custom-card-header-6")
+                        column(2, "Поручители")
                     )
                 )
             ),
@@ -296,7 +319,7 @@ ui <- page_sidebar(
                         column(2, "по согласованию"),
                         column(2, "от 1 000 руб."),
                         column(2, "до 84 мес."),
-                        column(2, "Поручители \bЗалог", class = "custom-card-header-6")
+                        column(2, "Поручители \bЗалог")
                     )
                 )
             ),
