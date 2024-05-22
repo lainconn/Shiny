@@ -8,11 +8,18 @@ library(readxl)
 
 
 ui <- page_sidebar(
+    window_title = "BankEase",
     title = tags$span(
         bs_icon("bank"), tags$b(" BankEase"), class = "title"
     ),
     useShinyjs(),
     tags$style(HTML("
+    .fluid_class {
+        border-bottom: 2px solid #F2F2F2;
+    }
+    .column_wrap {
+        border: 1px solid;
+    }
     .title {
         font-size: 20px;
     }
@@ -29,6 +36,9 @@ ui <- page_sidebar(
         padding-left: 50px;
         font-weight: bold;
     }
+    .main-card {
+        height: 1000px;
+    }
     .custom-card-header {
         font-size: 13px;
         padding-left: 30px;
@@ -38,6 +48,7 @@ ui <- page_sidebar(
     .custom-card-body {
       padding: 10px;
       margin-bottom: 10px;
+      margin-top: 10px;
     }
     .button  {
         padding-left: 18px;
@@ -58,7 +69,7 @@ ui <- page_sidebar(
         padding-left: 0px;
     }
     .custom-card-header-7 {
-        padding-left: 0px;
+        padding-right: 5px;
     }
     .nav_item_custom {
       margin-top: 15px;
@@ -184,7 +195,6 @@ ui <- page_sidebar(
         )
     ),
     card(
-        min_height = "1100px",
         card_header(
             conditionalPanel(
                 "input.nav_pills === 'Кредиты'",
@@ -195,7 +205,11 @@ ui <- page_sidebar(
                 )
             )
         ),
-        card_body(
+        navset_tab(
+            id = "main-card",
+            nav_panel(
+                title = "Все",
+                card_body(
             class = "custom-card-header",
             conditionalPanel(
                 "input.nav_pills === 'Кредиты'",
@@ -210,7 +224,6 @@ ui <- page_sidebar(
             )
         ),
         card_body(
-            min_height = "500px",
             class = "custom-card-body",
             conditionalPanel(
                 "input.nav_pills === 'Кредиты'",
@@ -219,9 +232,9 @@ ui <- page_sidebar(
                     class = "button",
                     inputId = "value_box",
                     label = fluidRow(
-                        column(2, "Белагропромбанк"),
+                        column(2, "Белагропромбанк", class = "custom-card-header-7"),
                         column(2, "ММБ-стартап-инвест"),
-                        column(2, "от 11,61%", class = "custom-card-header-7"),
+                        column(2, "от 11,61%"),
                         column(2, "от 1 000 руб."),
                         column(2, "до 60 мес."),
                         column(2, "Поручители \n Залог")
@@ -231,6 +244,7 @@ ui <- page_sidebar(
             uiOutput("tbl_1")
         ),
         card_body(
+            class = "custom-card-body",
             conditionalPanel(
                 "input.nav_pills === 'Кредиты'",
                 actionButton(
@@ -250,6 +264,7 @@ ui <- page_sidebar(
             uiOutput("tbl_2")
         ),
         card_body(
+            class = "custom-card-body",
             conditionalPanel(
                 "input.nav_pills === 'Кредиты'",
                 actionButton(
@@ -269,6 +284,7 @@ ui <- page_sidebar(
             uiOutput("tbl_3")
         ),
         card_body(
+            class = "custom-card-body",
             conditionalPanel(
                 "input.nav_pills === 'Кредиты'",
                 actionButton(
@@ -288,6 +304,7 @@ ui <- page_sidebar(
             uiOutput("tbl_4")
         ),
         card_body(
+            class = "custom-card-body",
             conditionalPanel(
                 "input.nav_pills === 'Кредиты'",
                 actionButton(
@@ -307,6 +324,7 @@ ui <- page_sidebar(
             uiOutput("tbl_5")
         ),
         card_body(
+            class = "custom-card-body",
             conditionalPanel(
                 "input.nav_pills === 'Кредиты'",
                 actionButton(
@@ -325,5 +343,150 @@ ui <- page_sidebar(
             ),
             uiOutput("tbl_6")
         )
-    )
+    ),
+                nav_panel(
+                title = "Избранное"
+                ),
+                nav_panel(
+                title = "Для малого бизнеса",
+                card_body(
+            class = "custom-card-header",
+            conditionalPanel(
+                "input.nav_pills === 'Кредиты'",
+                fluidRow(
+                    column(2, "БАНК"),
+                    column(2, "КРЕДИТ"),
+                    column(2, "ПРОЦЕНТНАЯ СТАВКА", class = "custom-card-header-3"),
+                    column(2, "СУММА", class = "custom-card-header-4"),
+                    column(2, "СРОК", class = "custom-card-header-5"),
+                    column(2, "ОБЕСПЕЧЕНИЕ", class = "custom-card-header-6")
+                )
+            )
+        ),
+        card_body(
+            class = "custom-card-body",
+            conditionalPanel(
+                "input.nav_pills === 'Кредиты'",
+                actionButton(
+                    width = "auto",
+                    class = "button",
+                    inputId = "value_box_6",
+                    label = fluidRow(
+                        column(2, "Cбербанк", class = "custom-card-header-7"),
+                        column(2, "Кредит за 2 часа"),
+                        column(2, "по согласованию"),
+                        column(2, "до 600 000 руб."),
+                        column(2, "до 60 мес."),
+                        column(2, "Поручители")
+                    )
+                )
+            ),
+            uiOutput("tbl_10")
+        ),
+        card_body(
+            class = "custom-card-body",
+            conditionalPanel(
+                "input.nav_pills === 'Кредиты'",
+                actionButton(
+                    width = "auto",
+                    class = "button",
+                    inputId = "value_box_7",
+                    label = fluidRow(
+                        column(2, "Банк ВТБ"),
+                        column(2, "Актив Плюс"),
+                        column(2, "по согласованию"),
+                        column(2, "до 200 000 руб."),
+                        column(2, "до 60 мес."),
+                        column(2, "Поручители")
+                    )
+                )
+            ),
+            uiOutput("tbl_2")
+        ),
+        card_body(
+            class = "custom-card-body",
+            conditionalPanel(
+                "input.nav_pills === 'Кредиты'",
+                actionButton(
+                    width = "auto",
+                    class = "button",
+                    inputId = "value_box_8",
+                    label = fluidRow(
+                        column(2, "Приорбанк"),
+                        column(2, "Овердрафт"),
+                        column(2, "11%"),
+                        column(2, "до 174 000 руб."),
+                        column(2, "до 18 мес."),
+                        column(2, "Поручители")
+                    )
+                )
+            ),
+            uiOutput("tbl_3")
+        ),
+        card_body(
+            class = "custom-card-body",
+            conditionalPanel(
+                "input.nav_pills === 'Кредиты'",
+                actionButton(
+                    width = "auto",
+                    class = "button",
+                    inputId = "value_box_9",
+                    label = fluidRow(
+                        column(2, "Беларусбанк"),
+                        column(2, "Бизнес-Бриллиант"),
+                        column(2, "от 5,5%"),
+                        column(2, "до 1 000 000 руб."),
+                        column(2, "до 84 мес."),
+                        column(2, "Поручители \bЗалог")
+                    )
+                )
+            ),
+            uiOutput("tbl_4")
+        ),
+        card_body(
+            class = "custom-card-body",
+            conditionalPanel(
+                "input.nav_pills === 'Кредиты'",
+                actionButton(
+                    width = "auto",
+                    class = "button",
+                    inputId = "value_box_10",
+                    label = fluidRow(
+                        column(2, "Альфа Банк"),
+                        column(2, "Для расчетов с партнерами"),
+                        column(2, "0,00001%"),
+                        column(2, "до 100 000 руб."),
+                        column(2, "до 24 мес."),
+                        column(2, "Не требуется")
+                    )
+                )
+            ),
+            uiOutput("tbl_alpha")
+        ),
+        card_body(
+            class = "custom-card-body",
+            conditionalPanel(
+                "input.nav_pills === 'Кредиты'",
+                actionButton(
+                    width = "auto",
+                    class = "button",
+                    inputId = "value_box_11",
+                    label = fluidRow(
+                        column(2, "БСБ Банк"),
+                        column(2, "Инвестиционный"),
+                        column(2, "по согласованию"),
+                        column(2, "до 100 000 руб."),
+                        column(2, "до 36 мес."),
+                        column(2, "Поручители")
+                    )
+                )
+            ),
+            uiOutput("tbl_6")
+        )
+                ),
+                nav_panel(
+                title = "Для крупного бизнеса"
+                )
+)
+)
 )
